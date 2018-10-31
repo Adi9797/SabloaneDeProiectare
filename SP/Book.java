@@ -1,41 +1,93 @@
-package SPlab;
-
 import java.util.ArrayList;
+import java.util.List;
 
-public class Book {
-	String title;
-	ArrayList<Author> authors=new ArrayList<Author>();
-	ArrayList<Chapter> chapters=new ArrayList<Chapter>();
-	
-	Book(String title){
-		this.title=title;
-	}
-	
-	public void addAuthor(Author a) {
-		authors.add(a);
+public class Book implements Element{
+	private String title;
+	private List<Author> authors = new ArrayList<Author>();
+	private List<Element> chapters = new ArrayList<Element>();
+
+	public Book(String title) {
+		this.title = title;
 	}
 
-	public int createChapter(String chapterName) {
-		Chapter ch = new Chapter(chapterName);
-		chapters.add(ch);
-		return chapters.indexOf(ch);
+	public String getTitle() {
+		return title;
 	}
 
-	public Chapter getChapter(int indexChapterOne) {
-			return chapters.get(indexChapterOne);
+	public void setTitle(String title) {
+		this.title = title;
 	}
-	public void print(){
-		System.out.print("---Title--- ");
-		System.out.println(title);
+//
+//	public List<Author> getAuthors() {
+//		return authors;
+//	}
+//
+//	public void setAuthors(List<Author> authors) {
+//		this.authors = authors;
+//	}
+//
+//	public List<Chapter> getChapters() {
+//		return chapters;
+//	}
+//
+//	public void setChapters(List<Chapter> chapters) {
+//		this.chapters = chapters;
+//	}
+//
+	public void addAuthor(Author author) {
+		authors.add(author);
+	}
+//
+//	public int createChapter(String title) {
+//		Chapter chapter = new Chapter(title);
+//		chapters.add(chapter);
+//		return chapters.indexOf(chapter);
+//	}
+//
+//	public Chapter getChapter(int index) {
+//		return chapters.get(index);
+//	}
+//	
+//	
+//	
+//	public void print(){
+//		System.out.println("BOOK " + title);
+//		System.out.println("AUTHORS");
+//		for (int i = 0; i<authors.size(); i++){
+//			System.out.println(authors.get(i).getName());
+//		}
+//		
+//		System.out.println("CHAPERS");
+//		for (int i = 0; i<chapters.size(); i++){
+//			System.out.println(chapters.get(i).getChapterTitle());
+//		}
+//	}
+
+	@Override
+	public void add(Element e) {
+		chapters.add(e);
 		
-		System.out.println("---Authors---");
-		for(int auth=0;auth<authors.size();auth++) {
-			System.out.println(authors.get(auth).name);
+	}
+
+	@Override
+	public void remove(Element e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void getChild(int index) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void print() {
+		System.out.println(title);
+		for (Element elem : chapters){
+			elem.print();
 		}
-		System.out.println("---Chapters---");
-		for(int ch=0;ch<chapters.size();ch++) {
-			System.out.println(chapters.get(ch).chTitle);
-		}
+		
 	}
 
 }
